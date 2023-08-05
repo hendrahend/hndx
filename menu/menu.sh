@@ -90,7 +90,7 @@ IPVPS=$(curl -s ipinfo.io/ip)
 UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
 clear
 echo -e "${PURPLE} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${PURPLE} │  ${PURPLE}  Use Core       : ${GREEN}Wings Tunneling ${NC}"
+echo -e "${PURPLE} │  ${PURPLE}  Use Core       : ${GREEN}HNDX Tunneling ${NC}"
 echo -e " ${PURPLE}│  ${PURPLE}  OS VPS         : "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-` $NC
 echo -e " ${PURPLE}│  ${PURPLE}  Current Domain : ${GREEN}$(cat /etc/xray/domain)${NC}"
 echo -e " ${PURPLE}│  ${PURPLE}  SLOWDNS Domain : ${GREEN}$(cat /root/nsdomain)${NC}"

@@ -34,4 +34,3 @@ echo -e "\033[1;93m  >Port ShadowSocks GRPC    :443\e[0m"
 echo -e ""
 read -n 1 -s -r -p "  Press any key to back on menu"
 menu
-esac

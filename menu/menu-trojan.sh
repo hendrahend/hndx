@@ -1,5 +1,4 @@
 #!/bin/bash
-# Color Configuration
 BIBlack='\033[1;90m'      # Black
 BIRed='\033[1;91m'        # Red
 BIGreen='\033[1;92m'      # Green
@@ -34,9 +33,9 @@ export LIGHT='\033[0;37m'
 export NC='\033[0m'
 
 # // Export Banner Status Information
-export ERROR="[${RED} ERROR ${NC}]"
+export EROR="[${RED} EROR ${NC}]"
 export INFO="[${YELLOW} INFO ${NC}]"
-export OKAY="[${GREEN} OKAY ${NC}]"
+export OKEY="[${GREEN} OKEY ${NC}]"
 export PENDING="[${YELLOW} PENDING ${NC}]"
 export SEND="[${YELLOW} SEND ${NC}]"
 export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
@@ -46,8 +45,8 @@ export BOLD="\e[1m"
 export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
-
 clear
+
 function detailtrojan(){
 clear
 MYIP=$(wget -qO- ipv4.icanhazip.com);
@@ -115,7 +114,7 @@ domain=$(cat /etc/xray/domain)
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=1
-exp=`date -d "$masaaktif days" +"%Y-Success--111097726"`
+exp=`date -d "$masaaktif days" +"%Y-Success-318302338"`
 sed -i '/#trojanws$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
@@ -183,4 +182,4 @@ echo "-------------------------------"
 fi
 rm -rf /tmp/ipxray.txt
 done
-rm -rf /tmp/
+rm -rf /tmp/o

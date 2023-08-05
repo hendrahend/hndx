@@ -35,8 +35,6 @@ db=`cat /root/log-install.txt | grep -w "Dropbear" | cut -f2 -d: | awk '{print $
 ssl="$(cat ~/log-install.txt | grep -w "Stunnel5" | cut -d: -f2)"
 sqd="$(cat /root/log-install.txt | grep -w "Squid" | cut -d: -f2)"
 OhpSSH=`cat /root/log-install.txt | grep -w "OHP SSH" | cut -d: -f2 | awk '{print $1}'`
-
-
 Login=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
 Pass=1

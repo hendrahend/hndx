@@ -243,6 +243,7 @@ END
 service cron restart >/dev/null 2>&1
 service cron reload >/dev/null 2>&1
 clear
+# Show menu when login VPS
 cat> /root/.profile << END
 if [ "$BASH" ]; then
 if [ -f ~/.bashrc ]; then

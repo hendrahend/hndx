@@ -1,28 +1,28 @@
 #!/bin/bash
-BIBlack='\033[1;90m'      # Black
-BIRed='\033[1;91m'        # Red
-BIGreen='\033[1;92m'      # Green
-BIYellow='\033[1;93m'     # Yellow
-BIBlue='\033[1;94m'       # Blue
-BIPurple='\033[1;95m'     # Purple
-BICyan='\033[1;96m'       # Cyan
-BIWhite='\033[1;97m'      # White
-UWhite='\033[4;37m'       # White
-On_IPurple='\033[0;105m'  #
-On_IRed='\033[0;101m'
-IBlack='\033[0;90m'       # Black
-IRed='\033[0;91m'         # Red
-IGreen='\033[0;92m'       # Green
-IYellow='\033[0;93m'      # Yellow
-IBlue='\033[0;94m'        # Blue
-IPurple='\033[0;95m'      # Purple
-ICyan='\033[0;96m'        # Cyan
-IWhite='\033[0;97m'       # White
+# Color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+ORANGE='\033[0;33m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+YELLOW='\033[0;33m'
+LIGHT='\033[0;37m'
 NC='\e[0m'
+# Additional Configuration
+export INFO="[${YELLOW} INFO ${NC}]"
+export OKAY="[${GREEN} OKAY ${NC}]"
+export WARNING="${RED}\e[5m"
+export ERROR="[${RED} ERROR ${NC}]"
+export PENDING="[${YELLOW} PENDING ${NC}]"
+export SEND="[${YELLOW} SEND ${NC}]"
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
+export BOLD="\e[1m"
+export UNDERLINE="\e[4m"
 
 clear
 sldomain=$(cat /root/nsdomain)
-cdndomain=$(cat /root/awscdndomain)
+# cdndomain=$(cat /root/awscdndomain)
 slkey=$(cat /etc/slowdns/server.pub)
 clear
 cekray=`cat /root/log-install.txt | grep -ow "XRAY" | sort | uniq`
@@ -34,9 +34,9 @@ fi
 portsshws=`cat /root/log-install.txt | grep -w "SSH Websocket" | cut -d: -f2 | awk '{print $1}'`
 wsssl=`cat /root/log-install.txt | grep -w "SSH SSL Websocket" | cut -d: -f2 | awk '{print $1}'`
 
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "$PURPLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "\E[0;41;36m        Create SSH Account            \E[0m"
-echo -e "$COLOR1━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "$PURPLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 read -p "Username : " Login
 read -p "Password : " Pass
 read -p "Expired (hari): " masaaktif
@@ -56,57 +56,55 @@ OhpOVPN=`cat /root/log-install.txt | grep -w "OHP OpenVPN" | cut -d: -f2 | awk '
 
 sleep 1
 clear
-useradd -e `date -d "$masaaktif days" +"%Y-Success-0"` -s /bin/false -M $Login
+useradd -e `date -d "$masaaktif days" +"%Y-No such file or directory-0"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 PID=`ps -ef |grep -v grep | grep sshws |awk '{print $2}'`
 
 if [[ ! -z "${PID}" ]]; then
-echo -e "${BIBlue}════════════SSH ACCOUNTS══════════${NC}"
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "Username   : $Login" 
-echo -e "Password   : $Pass"
-echo -e "Expired On : $exp" 
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "IP         : $IP" 
-echo -e "Host       : $domen" 
-echo -e "Nameserver : $sldomain" | tee -a /etc/log-create-user.log
-echo -e "PubKey     : $slkey" | tee -a /etc/log-create-user.log
-echo -e "OpenSSH    : $opensh"
-echo -e "Dropbear   : $db" 
-echo -e "SSH-WS     : $portsshws" 
-echo -e "SSH WS SSL : $wsssl" 
-echo -e "SSL/TLS    : $ssl" 
-echo -e "SlowDNS    : 53,5300,443" 
-echo -e "SSH UDP    : $domen:1-65535@$Login:$Pass" 
-echo -e "UDPGW      : 7100-7300" 
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "GET / HTTP/1.1[crlf]Host: $domen[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: ws[crlf][crlf]"
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-
-else
-
-echo -e "${BIBlue}════════════SSH ACCOUNTS══════════${NC}"
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "Username   : $Login" 
-echo -e "Password   : $Pass"
-echo -e "Expired On : $exp" 
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "IP         : $IP" 
-echo -e "Host       : $domen" 
-echo -e "Nameserver : $sldomain" | tee -a /etc/log-create-user.log
-echo -e "PubKey     : $slkey" | tee -a /etc/log-create-user.log
-echo -e "OpenSSH    : $opensh"
-echo -e "Dropbear   : $db" 
-echo -e "SSH-WS     : $portsshws" 
-echo -e "SSH-SSL-WS : $wsssl" 
-echo -e "SSL/TLS    : $ssl" 
-echo -e "SlowDNS    : 53,5300,443" 
-echo -e "SSH UDP    : $domen:1-65535@$Login:$Pass" 
-echo -e "UDPGW      : 7100-7300" 
-echo -e "${BIBlue}══════════════════════════════════${NC}"
-echo -e "GET / HTTP/1.1[crlf]Host: $domen[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: ws[crlf][crlf]"
-echo -e "${BIBlue}══════════════════════════════════${NC}"
+    echo -e "${PURPLE}════════════SSH ACCOUNTS══════════${NC}"
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "Username   : $Login" 
+    echo -e "Password   : $Pass"
+    echo -e "Expired On : $exp" 
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "IP         : $IP" 
+    echo -e "Host       : $domen" 
+    echo -e "Nameserver : $sldomain" | tee -a /etc/log-create-user.log
+    echo -e "PubKey     : $slkey" | tee -a /etc/log-create-user.log
+    echo -e "OpenSSH    : $opensh"
+    echo -e "Dropbear   : $db" 
+    echo -e "SSH-WS     : $portsshws" 
+    echo -e "SSH WS SSL : $wsssl" 
+    echo -e "SSL/TLS    : $ssl" 
+    echo -e "SlowDNS    : 53,5300,443" 
+    echo -e "SSH UDP    : $domen:1-65535@$Login:$Pass" 
+    echo -e "UDPGW      : 7100-7300" 
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "GET / HTTP/1.1[crlf]Host: $domen[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: ws[crlf][crlf]"
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    else
+    echo -e "${PURPLE}════════════SSH ACCOUNTS══════════${NC}"
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "Username   : $Login" 
+    echo -e "Password   : $Pass"
+    echo -e "Expired On : $exp" 
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "IP         : $IP" 
+    echo -e "Host       : $domen" 
+    echo -e "Nameserver : $sldomain" | tee -a /etc/log-create-user.log
+    echo -e "PubKey     : $slkey" | tee -a /etc/log-create-user.log
+    echo -e "OpenSSH    : $opensh"
+    echo -e "Dropbear   : $db" 
+    echo -e "SSH-WS     : $portsshws" 
+    echo -e "SSH-SSL-WS : $wsssl" 
+    echo -e "SSL/TLS    : $ssl" 
+    echo -e "SlowDNS    : 53,5300,443" 
+    echo -e "SSH UDP    : $domen:1-65535@$Login:$Pass" 
+    echo -e "UDPGW      : 7100-7300" 
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
+    echo -e "GET / HTTP/1.1[crlf]Host: $domen[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: ws[crlf][crlf]"
+    echo -e "${PURPLE}══════════════════════════════════${NC}"
 fi
 echo "" | tee -a /etc/log-create-user.log
 read -n 1 -s -r -p "Press any key to back on menu"

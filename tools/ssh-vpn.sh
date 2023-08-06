@@ -8,9 +8,7 @@ export CYAN='\033[0;36m'
 export LIGHT='\033[0;37m'
 NC='\033[0m'
 
-
 clear
-
 export DEBIAN_FRONTEND=noninteractive
 MYIP=$(curl -sS ifconfig.me);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
@@ -25,7 +23,7 @@ organizationalunit=vpn
 commonname=vpn
 email=mail@test.com
 
-wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/password"
+wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/password"
 chmod +x /etc/pam.d/common-password
 
 cd
@@ -62,7 +60,7 @@ cd
 clear 
 
 # Getting websocket ssl stunnel
-wget -q -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/ws-stunnel"
+wget -q -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/ws-stunnel"
 chmod +x /usr/local/bin/ws-stunnel
 
 # Installing Service Ovpn Websocket
@@ -121,22 +119,22 @@ date
 echo ""
 # enable rc local
 sleep 1
-echo -e "[ ${GREEN}INFO${NC} ] Checking... "
+echo -e "[ ${YELLOW}INFO${NC} ] Checking... "
 sleep 2
 sleep 1
-echo -e "[ ${GREEN}INFO$NC ] Enable system rc local"
+echo -e "[ ${YELLOW}INFO$NC ] Enable system rc local"
 systemctl enable rc-local >/dev/null 2>&1
 systemctl start rc-local.service >/dev/null 2>&1
 
 # disable ipv6
 sleep 1
-echo -e "[ ${GREEN}INFO$NC ] Disable ipv6"
+echo -e "[ ${YELLOW}INFO$NC ] Disable ipv6"
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6 >/dev/null 2>&1
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local >/dev/null 2>&1
 
 # set time GMT +7
 sleep 1
-echo -e "[ ${GREEN}INFO$NC ] Set zona local time to Asia/Jakarta GMT+7"
+echo -e "[ ${YELLOW}INFO$NC ] Set zona local time to Asia/Jakarta GMT+7"
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
@@ -165,7 +163,7 @@ echo -ne
 fi
 cd
 echo -e "[ ${GREEN}INFO$NC ] Installing badvpn for game support..."
-wget -q -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/newudpgw"
+wget -q -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/newudpgw"
 chmod +x /usr/bin/badvpn-udpgw  >/dev/null 2>&1
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local >/dev/null 2>&1
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local >/dev/null 2>&1
@@ -209,7 +207,7 @@ fi
 
 # Install Stunnel5
 cd /root/
-wget -q "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/stunnel5.zip"
+wget -q "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/stunnel5.zip"
 unzip stunnel5.zip
 cd /root/stunnel
 chmod +x configure
@@ -272,7 +270,7 @@ END
 
 # Service Stunnel5 /etc/init.d/stunnel5
 rm -fr /etc/init.d/stunnel5
-wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/stunnel5.init"
+wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/stunnel5.init"
 
 # Ubah Izin Akses
 #chmod 600 /etc/stunnel5/stunnel5.pem
@@ -393,7 +391,7 @@ rm -fr /etc/issue.net
 rm -fr /etc/issue.net.save
 sleep 1
 echo -e "[ ${GREEN}INFO$NC ] Settings banner"
-wget -q -O /etc/issue.net "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/issue.net"
+wget -q -O /etc/issue.net "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/issue.net"
 chmod +x /etc/issue.net
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
@@ -433,25 +431,25 @@ fi
 # apt autoremove -y >/dev/null 2>&1
 # finishing
 cd
-echo -e "[ ${GREEN}ok${NC} ] Restarting openvpn"
+echo -e "[ ${GREEN}OK${NC} ] Restarting openvpn"
 /etc/init.d/cron restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting cron"
+echo -e "[ ${GREEN}OK${NC} ] Restarting cron"
 /etc/init.d/ssh restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting ssh"
+echo -e "[ ${GREEN}OK${NC} ] Restarting ssh"
 /etc/init.d/dropbear restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting dropbear"
+echo -e "[ ${GREEN}OK${NC} ] Restarting dropbear"
 /etc/init.d/fail2ban restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting fail2ban"
+echo -e "[ ${GREEN}OK${NC} ] Restarting fail2ban"
 /etc/init.d/stunnel5 restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting stunnel5"
+echo -e "[ ${GREEN}OK${NC} ] Restarting stunnel5"
 /etc/init.d/vnstat restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting squid "
+echo -e "[ ${GREEN}OK${NC} ] Restarting squid "
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500 >/dev/null 2>&1
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500 >/dev/null 2>&1
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500 >/dev/null 2>&1

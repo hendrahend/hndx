@@ -13,7 +13,7 @@ sleep 1
 echo ""
 # UPDATE RUN-UPDATE
 cd /usr/bin
-wget -O run-upd "https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/ssh/upd.sh"
+wget -O run-upd "https://raw.githubusercontent.com/${GitUser}/hndx/ssh/upd.sh"
 chmod +x run-upd
 # RUN UPDATE
 echo ""
@@ -27,13 +27,13 @@ rm -rf usernew
 rm -rf add-ws
 rm -rf add-tr
 rm -rf restart
-wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/usernew.sh"
-wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-ws.sh"
-wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-ssws.sh"
-wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-vless.sh"
-wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-tr.sh"
-wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-ssh.sh"
-wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/restart.sh"
+wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/usernew.sh"
+wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-ws.sh"
+wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-ssws.sh"
+wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-vless.sh"
+wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-tr.sh"
+wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-ssh.sh"
+wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/restart.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/add-ssws

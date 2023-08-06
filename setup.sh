@@ -30,10 +30,10 @@ export SEND="[${YELLOW} SEND ${NC}]"
 export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
 export BOLD="\e[1m"
 export UNDERLINE="\e[4m"
-# Setup Starting..
+# Setup Starting #
 echo -e "${INFO} Welcome: Autoscript Install VPN by HNDX !"
-sleep 2
-# / Checking: Installed Script
+sleep 3
+# Checking: Installed Script
 if [[ -r /etc/xray/domain ]]; then
     clear
     echo -e "${INFO} Script Already Detected !"
@@ -58,7 +58,7 @@ if [[ -r /etc/xray/domain ]]; then
     fi
     clear
 fi
-# / Remove Packages If Already Have
+# Remove Packages If Already Have
 cd /root/
 apt-get remove --purge apache2* -y
 apt-get remove --purge dropbear* -y
@@ -70,7 +70,7 @@ apt-get remove --purge nginx-full* -y
 apt-get remove --purge stunnel4* -y
 apt-get remove --purge ufw* -y
 apt autoremove -y
-# / Starting Installation
+## Starting Installation ##
 echo -e "${OKAY} Starting Installation..."
 apt update -y
 apt-get --reinstall --fix-missing install -y sudo dpkg psmisc socat jq ruby wondershaper python2 tmux nmap bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget vim net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential gcc g++ automake make autoconf perl m4 dos2unix dropbear libreadline-dev zlib1g-dev libssl-dev dirmngr libxml-parser-perl neofetch git lsof iptables iptables-persistent
@@ -83,6 +83,7 @@ clear
 clear && clear && clear
 clear;clear;clear
 sleep 2
+# Input Domain
 echo -e "${GREEN}-----------------------------------------------------${NC}"
 echo -e "Siapkan Domain Anda..."
 echo -e "Kemudian Pointing Domain Ke IP VPS"
@@ -113,12 +114,13 @@ mkdir -p /etc/xray
 mkdir -p /usr/bin/xray
 mkdir -p /usr/local/etc/xray
 mkdir -p /var/lib/scrz-prem/
-echo "$domain" > /etc/${Auther}/domain.txt
+echo "$domain" > /etc/domain.txt
 echo "IP=$domain" > /var/lib/scrz-prem/ipvps.conf
 echo "$domain" > /root/domain
 domain=$(cat /root/domain)
 cp -r /root/domain /etc/xray/domain
 clear
+# Generating Certificate
 echo -e "[ ${GREEN}INFO${NC} ] Starting Renew Certificate... "
 sleep 2
 echo -e "${OKAY} Start Generating Certificate"
@@ -136,63 +138,64 @@ sleep 2
 clear
 clear && clear && clear
 clear;clear;clear
+# Installing Tools
 echo -e "┌─────────────────────────────────────────┐"
 echo -e " \E[41;1;39m          >>> Install Tools <<<          \E[0m$NC"
 echo -e "└─────────────────────────────────────────┘"
 sleep 1
-wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/vnstat.sh && chmod +x vnstat.sh && ./vnstat.sh
+wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/vnstat.sh && chmod +x vnstat.sh && ./vnstat.sh
 echo -e "┌─────────────────────────────────────────┐"
-echo -e " \E[41;1;39m          >>> Install SSH / WS <<<        \E[0m$NC"
+echo -e " \E[41;1;39m         >>> Install SSH / WS <<<        \E[0m$NC"
 echo -e "└─────────────────────────────────────────┘"
 sleep 1
-wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 echo -e "┌─────────────────────────────────────────┐"
-echo -e " \E[41;1;39m            >>> Install Xray <<<         \E[0m$NC"
+echo -e " \E[41;1;39m           >>> Install Xray <<<          \E[0m$NC"
 echo -e "└─────────────────────────────────────────┘"
 sleep 1
-wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/scripts/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
+wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx/main/scripts/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
 echo -e "┌─────────────────────────────────────────┐"
-echo -e " \E[41;1;39m            >>> Install Backup <<<           \E[0m$NC"
+echo -e " \E[41;1;39m           >>> Install Backup <<<        \E[0m$NC"
 echo -e "└─────────────────────────────────────────┘"
 sleep 1
-wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget -q https://raw.githubusercontent.com/hendra-hendriana/hndx/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 echo -e "┌─────────────────────────────────────────┐"
-echo -e " \E[41;1;39m            >>> Install slowdns <<<           \E[0m$NC"
+echo -e " \E[41;1;39m          >>> Install SlowDNS <<<        \E[0m$NC"
 echo -e "└─────────────────────────────────────────┘"
 sleep 1
 wget https://raw.githubusercontent.com/Andyvpn/Autoscript-by-azi/main/autoscript-ssh-slowdns-main/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
-echo -e "${GREEN}Downloading Data & Tools...${NC}"
-wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/usernew.sh"
-wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-ws.sh"
-wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-ssws.sh"
-wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-vless.sh"
-wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-tr.sh"
-wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/xp.sh"
-wget -q -O /usr/bin/autoreboot "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/autoreboot.sh"
-wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/restart.sh"
-wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/tendang.sh"
-wget -q -O /usr/bin/clearlog "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/clearlog.sh"
-wget -q -O /usr/bin/running "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/running.sh"
-wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/speedtest_cli.py"
-wget -q -O /usr/bin/cek-bandwidth "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/cek-bandwidth.sh"
-wget -q -O /usr/bin/limitspeed "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/limitspeed.sh"
-wget -q -O /usr/bin/user-xray "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/scripts/user-xray.sh"
-wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-vless.sh"
-wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-vmess.sh"
-wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-ss.sh"
-wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-trojan.sh"
-wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-ssh.sh"
-wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-backup.sh"
-wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu.sh"
-wget -q -O /usr/bin/webmin "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/webmin.sh"
-wget -q -O /usr/bin/update "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/update.sh"
-wget -q -O /usr/bin/addhost "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/addhost.sh"
-wget -q -O /usr/bin/certxray "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/crt.sh"
-wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-set.sh"
-wget -q -O /usr/bin/info "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/info.sh"
-wget -q -O /usr/bin/infoserv "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/infoserv.sh"
-wget -q -O /usr/bin/cns "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/cns.sh"
-wget -q -O /usr/bin/upd "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/upd.sh"
+echo -e "${INFO}Downloading Data & Tools..."
+wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/usernew.sh"
+wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-ws.sh"
+wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-ssws.sh"
+wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-vless.sh"
+wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-tr.sh"
+wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/xp.sh"
+wget -q -O /usr/bin/autoreboot "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/autoreboot.sh"
+wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/restart.sh"
+wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/tendang.sh"
+wget -q -O /usr/bin/clearlog "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/clearlog.sh"
+wget -q -O /usr/bin/running "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/running.sh"
+wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/speedtest_cli.py"
+wget -q -O /usr/bin/cek-bandwidth "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/cek-bandwidth.sh"
+wget -q -O /usr/bin/limitspeed "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/limitspeed.sh"
+wget -q -O /usr/bin/user-xray "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/scripts/user-xray.sh"
+wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-vless.sh"
+wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-vmess.sh"
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-ss.sh"
+wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-trojan.sh"
+wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-ssh.sh"
+wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-backup.sh"
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu.sh"
+wget -q -O /usr/bin/webmin "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/webmin.sh"
+wget -q -O /usr/bin/update "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/update.sh"
+wget -q -O /usr/bin/addhost "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/addhost.sh"
+wget -q -O /usr/bin/certxray "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/crt.sh"
+wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-set.sh"
+wget -q -O /usr/bin/info "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/info.sh"
+wget -q -O /usr/bin/infoserv "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/infoserv.sh"
+wget -q -O /usr/bin/cns "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/cns.sh"
+wget -q -O /usr/bin/upd "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/upd.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/user-xray
@@ -261,7 +264,7 @@ if [ ! -f "/etc/log-create-user.log" ]; then
     echo "Log All Account " > /etc/log-create-user.log
 fi
 history -c
-serverVersion=$( curl -sS https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/version  )
+serverVersion=$( curl -sS https://raw.githubusercontent.com/hendra-hendriana/hndx/main/version  )
 echo $serverVersion > /opt/.version
 aureb=$(cat /home/re_otm)
 b=11
@@ -315,7 +318,7 @@ rm -fr /root/ins-xray.sh
 rm -fr /root/domain
 rm -fr /root/setup.sh
 history -c
-echo -ne "[ ${yell}WARNING${NC} ] Apakah Anda Ingin Reboot Sekarang ? (y/n)? "
+echo -ne "[ ${YELLOW}WARNING${NC} ] Apakah Anda Ingin Reboot Sekarang ? (y/n)? "
 read answer
 if [ "$answer" == "${answer#[Yy]}" ] ;then
     exit 0

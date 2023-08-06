@@ -10,7 +10,7 @@ if [ "$(systemd-detect-virt)" == "openvz" ]; then
 fi
 echo ""
 version=$(cat /home/ver)
-ver=$( curl https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/main/version )
+ver=$( curl https://raw.githubusercontent.com/${GitUser}/hndx/main/version )
 clear
 # LINE COLOUR
 line=$(cat /etc/line)
@@ -28,7 +28,7 @@ Info1="${Green_font_prefix}($version)${Font_color_suffix}"
 Info2="${Green_font_prefix}(LATEST VERSION)${Font_color_suffix}"
 Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available${Red_font_prefix}[Please Update]${Font_color_suffix}"
 version=$(cat /home/ver)
-new_version=$( curl https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/main/newversion | grep $version )
+new_version=$( curl https://raw.githubusercontent.com/${GitUser}/hndx/main/newversion | grep $version )
 #Status Version
 if [ $version = $new_version ]; then
 sts="${Info2}"
@@ -55,7 +55,7 @@ read -p "PPlease Choose 1 or x : " option2
 case $option2 in
 1)
 version=$(cat /home/ver)
-new_version=$( curl https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/main/newversion | grep $version )
+new_version=$( curl https://raw.githubusercontent.com/${GitUser}/hndx/main/newversion | grep $version )
 if [ $version = $new_version ]; then
 clear
 echo ""
@@ -83,7 +83,7 @@ sleep 1
 echo ""
 # UPDATE RUN-UPDATE
 cd /usr/bin
-wget -O run-update "https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/main/utils/update.sh"
+wget -O run-update "https://raw.githubusercontent.com/${GitUser}/hndx/main/utils/update.sh"
 chmod +x run-update
 # RUN UPDATE
 echo ""
@@ -95,34 +95,34 @@ echo ""
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
 sleep 2
 cd /usr/bin
-wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/user-new.sh"
-wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/addws.sh"
-wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-ssws.sh"
-wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-vless.sh"
-wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/add-tr.sh"
-wget -q -O /usr/bin/autoreboot "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/autoreboot.sh"
-wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/restart.sh"
-wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/tendang.sh"
-wget -q -O /usr/bin/clearlog "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/clearlog.sh"
-wget -q -O /usr/bin/running "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/running.sh"
-wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/tools/speedtest_cli.py"
-wget -q -O /usr/bin/cek-bandwidth "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/cek-bandwidth.sh"
-wget -q -O /usr/bin/limitspeed "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/limitspeed.sh"
-wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-vless.sh"
-wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-vmess.sh"
-wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-ss.sh"
-wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-trojan.sh"
-wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-ssh.sh"
-wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-backup.sh"
-wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu.sh"
-wget -q -O /usr/bin/webmin "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/webmin.sh"
-wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/ssh/xp.sh"
-wget -q -O /usr/bin/update "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/update.sh"
-wget -q -O /usr/bin/addhost "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/addhost.sh"
-wget -q -O /usr/bin/certxray "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/crt.sh"
-wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/menu/menu-set.sh"
-wget -q -O /usr/bin/info "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/info.sh"
-wget -q -O /usr/bin/infoserv "https://raw.githubusercontent.com/hendra-hendriana/hndx-autoscript/main/utils/infoserv.sh"
+wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/user-new.sh"
+wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/addws.sh"
+wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-ssws.sh"
+wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-vless.sh"
+wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/add-tr.sh"
+wget -q -O /usr/bin/autoreboot "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/autoreboot.sh"
+wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/restart.sh"
+wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/tendang.sh"
+wget -q -O /usr/bin/clearlog "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/clearlog.sh"
+wget -q -O /usr/bin/running "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/running.sh"
+wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/tools/speedtest_cli.py"
+wget -q -O /usr/bin/cek-bandwidth "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/cek-bandwidth.sh"
+wget -q -O /usr/bin/limitspeed "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/limitspeed.sh"
+wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-vless.sh"
+wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-vmess.sh"
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-ss.sh"
+wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-trojan.sh"
+wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-ssh.sh"
+wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-backup.sh"
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu.sh"
+wget -q -O /usr/bin/webmin "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/webmin.sh"
+wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/service/xp.sh"
+wget -q -O /usr/bin/update "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/update.sh"
+wget -q -O /usr/bin/addhost "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/addhost.sh"
+wget -q -O /usr/bin/certxray "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/crt.sh"
+wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/menu/menu-set.sh"
+wget -q -O /usr/bin/info "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/info.sh"
+wget -q -O /usr/bin/infoserv "https://raw.githubusercontent.com/hendra-hendriana/hndx/main/utils/infoserv.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/add-ssws
@@ -155,7 +155,7 @@ clear
 echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 echo ""
-ver=$( curl https://raw.githubusercontent.com/${GitUser}/hndx-autoscript/main/version )
+ver=$( curl https://raw.githubusercontent.com/${GitUser}/hndx/main/version )
 sleep 1
 echo -e "\e[0;32mPatching New Update, Please Wait...\e[0m"
 echo ""

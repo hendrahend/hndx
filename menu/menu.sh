@@ -91,12 +91,12 @@ UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-c
 clear
 echo -e "${PURPLE} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${PURPLE} │  ${PURPLE}  Use Core       : ${GREEN}HNDX Tunneling ${NC}"
-echo -e " ${PURPLE}│  ${PURPLE}  OS VPS         : "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-` $NC
+echo -e " ${PURPLE}│  ${PURPLE}  OS VPS         : ${GREEN}"`hostnamectl | grep "Operating System" | cut -d ' ' -f5-` $NC
 echo -e " ${PURPLE}│  ${PURPLE}  Current Domain : ${GREEN}$(cat /etc/xray/domain)${NC}"
-echo -e " ${PURPLE}│  ${PURPLE}  SLOWDNS Domain : ${GREEN}$(cat /root/nsdomain)${NC}"
+echo -e " ${PURPLE}│  ${PURPLE}  SlowDNS Domain : ${GREEN}$(cat /root/nsdomain)${NC}"
 echo -e " ${PURPLE}│  ${PURPLE}  IP-VPS         : ${GREEN}$IPVPS${NC}"
 echo -e " ${PURPLE}│  ${PURPLE}  ISP-Name       : ${GREEN}$ISP${NC}"
-echo -e " ${PURPLE}│  ${GREEN}  DATE&TIME      : $( date -d "0 days" +"1-Success-%Y | 0" ) ${NC}"
+echo -e " ${PURPLE}│  ${PURPLE}  DATE & TIME    : ${GREEN}$(date)${NC}"
 echo -e " ${PURPLE}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "${PURPLE} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${PURPLE} │ \033[0m ${BOLD}${GREEN}        SSH             ALL-XRAY     $NC"
@@ -121,9 +121,8 @@ echo -e "${PURPLE} └───────────────────�
 echo -e "${PURPLE} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${PURPLE} │  ${GREEN}     HARI INI${NC}: ${RED}$ttoday$NC ${GREEN}KEMARIN${NC}: ${RED}$tyest$NC ${GREEN}BULAN${NC}: ${RED}$tmon$NC $NC"
 echo -e "${PURPLE} └─────────────────────────────────────────────────────┘${NC}"
-
 echo -e " ${PURPLE}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${PURPLE}│${RED}  Version  :  NGAPAIN SEWA SC"
+echo -e " ${PURPLE}│${PURPLE}  Version  :  ${GREEN}$(cat /opt/.version)"
 echo -e " ${PURPLE}└─────────────────────────────────────────────────────┘${NC}"
 echo
 read -p " Select menu : " opt

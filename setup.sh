@@ -265,6 +265,7 @@ if [ ! -f "/etc/log-create-user.log" ]; then
     echo "Log All Account " > /etc/log-create-user.log
 fi
 history -c
+# sc version
 serverVersion=$( curl -sS https://raw.githubusercontent.com/hendra-hendriana/hndx/main/version  )
 echo $serverVersion > /opt/.version
 aureb=$(cat /home/re_otm)
